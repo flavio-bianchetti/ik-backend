@@ -51,4 +51,16 @@ export default class ScheduleController {
       return res.status(500).json({ error: err });
     }
   };
+
+    public static delete = async (req: Request, res: Response): Promise<Response> => {
+      try {
+        const { id } = req.params;
+        const result = await ScheduleService.exclude(Number(id));
+        if (result === 0) return res.status(409).json({ message: 'Schedule task not found' });
+        return res.status(200).end();
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: err });
+      }
+    }
 }
