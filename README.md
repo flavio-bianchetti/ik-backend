@@ -201,10 +201,15 @@ Este repositório contém o teste prático "_IK Solution - Backend_", desafio t�
     - **response:**  em caso de sucesso é retornada uma resposta com o status 200, com o corpo da mensagem vazio.
 
 ---
-<!-- ### Problemas conhecidos não resolvidos:
-
-### Desafios e Aprendizados: -->
-
+### Problemas encontrados não resolvidos:
+- No Heroku, ao efetuar o deploy da aplicação, se o sequelize estiver habilitado para fazer a criação do banco de dados ao iniciar, a aplicação quebra. Tive que criar o banco de dados diretamente dentro do Supabase e desabilitar a autocriação do banco.
+- O teste da rota PUT /schedule/task/:id, para a alteração com sucesso da tarefa está quebrando por um motivo ainda desconhecido.
+- Infelizmente, consegui atingir a porcentagem de 72,59% de cobertura dos testes.
+### Desafios e Aprendizados:
+- Neste projeto aprendi um pouco mais sobre o Heroku.
+- Preciso me dedicar mais ao deploy das aplicações.
+- Preciso melhorar a qualidade dos meus testes.
+- Preciso melhorar a qualidade dos meus commits.
 
 ### Considerações finais:
 - Gostaria de agradecer à _[IK Solution](https://www.ik.com.br/)_ e a toda a equipe pela oportunidade e pelo tempo dispensado na elaboração e avaliação deste teste técnico.
