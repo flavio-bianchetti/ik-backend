@@ -37,4 +37,18 @@ export default class ScheduleController {
       return res.status(500).json({ error: err });
     }
   };
+
+  public static update = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const { id } = req.params;
+      const { name, date, time, description }: ISchedule = req.body;
+      const task = await ScheduleService.update(Number(id), name, date, time, description);
+      if (task === undefined) return res.status(409).json({ message: 'Schedule task not found' });
+      if (task === null) return res.status(422).json({ message: 'Update failure' });
+      return res.status(200).json(task);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: err });
+    }
+  };
 }
