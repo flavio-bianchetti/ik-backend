@@ -19,4 +19,35 @@ export default class ScheduleService {
     } as ISchedule;
   };
 
+  public static findAll = async (): Promise<ISchedule[]> => {
+    const schedule = await Schedule.findAll();
+    return schedule as ISchedule[];
+  };
+
+  public static find = async (id: number): Promise<ISchedule> => {
+    const task = await Schedule.findByPk(id);
+    return task as ISchedule;
+  };
+
+  public static update
+  = async (id: number, name: string, description: string, date: string, time: string)
+  : Promise<ISchedule | undefined | null> => {
+    const task = await Schedule.findByPk(id);
+    if (!task) return undefined;
+    const result = await Schedule.update({ name, date, time, description }, { where: { id }});
+    const [affectedCount] = result;
+    if (affectedCount === 0) return null;
+    return {
+    id,
+    name,
+    description,
+    date,
+    time,
+    } as ISchedule;
+  };
+
+  public static exclude = async (id: number): Promise<number> => {
+    const result = await Schedule.destroy({ where: { id }});
+    return result;
+  };
 }
