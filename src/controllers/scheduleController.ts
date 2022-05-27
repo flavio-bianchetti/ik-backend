@@ -25,4 +25,16 @@ export default class ScheduleController {
       return res.status(500).json({ error: err });
     }
   };
+
+  public static find = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const { id } = req.params;
+      const task = await ScheduleService.find(Number(id));
+      if (task === null) return res.status(404).json({ message: 'Schedule task not found' });
+      return res.status(200).json(task);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: err });
+    }
+  };
 }
