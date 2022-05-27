@@ -17,4 +17,15 @@ export default class ValidateRoutesEntries {
       return res.status(500).json({ error: err });
     }
   };
+
+  public static validateParamId = (req: Request, res: Response, next: NextFunction): Response | void => {
+    try {
+      const { id } = req.params;
+      if (!id ) return res.status(402).json({ message: 'ID param required' });
+      next();
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: err });
+    }
+  };
 }
