@@ -14,4 +14,15 @@ export default class ScheduleController {
       return res.status(500).json({ error: err });
     }
   };
+
+  public static findAll = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const Schedule = await ScheduleService.findAll();
+      if (Schedule === undefined) return res.status(404).json({ message: 'Schedule task not found' });
+      return res.status(200).json(Schedule);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: err });
+    }
+  };
 }
